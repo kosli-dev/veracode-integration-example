@@ -1,0 +1,35 @@
+name: Kosli Attest Veracode scan executed
+
+# Attest veracode executed
+#   https://docs.kosli.com/client_reference/kosli_attest_custom/
+
+
+inputs:
+  # The Following environment variables must be set in your GitHub action
+  # before using this composite
+  # env:
+  #   KOSLI_ORG: kosli
+  #   KOSLI_FLOW: your-flow-name
+  #   KOSLI_TRAIL: your-trail-name (often git-commit-sha)
+  #   KOSLI_API_TOKEN: "${{ secrets.KOSLI_API_TOKEN }}" 
+  #   KOSLI_CLI_VERSION: 2.11.6
+  veracode-summary-file:
+    description: "Veracode summary file (output from create-veracode-summary-file.sh)"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Kosli cli
+      uses: kosli-dev/setup-cli-action@v2
+      with:
+        version:
+          ${{ env.KOSLI_CLI_VERSION }}
+
+    - name: Attest Veracode scan executed
+      shell: bash
+      run: |
+        kosli attest custom \
+          --type=veracode-executed \
+          --name veracode-executed \
+          --attestation-data ${{ inputs.veracode-summary-file }}

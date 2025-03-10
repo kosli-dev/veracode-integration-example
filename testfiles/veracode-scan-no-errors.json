@@ -1,0 +1,52 @@
+{
+   "_links": {
+      "root": {
+         "href": "/",
+         "name": "",
+         "templated": false
+      },
+      "self": {
+         "href": "/scans/3f9bef4a-7ca6-4938-a64e-019192360bbb/findings",
+         "name": "",
+         "templated": false
+      },
+      "help": {
+         "href": "https://docs.veracode.com/",
+         "name": "",
+         "templated": false
+      },
+      "create": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "start": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "details": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "upload": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "cancel": {
+         "href": "",
+         "name": "",
+         "templated": false
+      }
+   },
+   "scan_id": "3f9bef4a-7ca6-4938-a64e-019192360bbb",
+   "scan_status": "SUCCESS",
+   "message": "Scan successful. Results size: 476605 bytes",
+   "modules": [
+      "JS files within example.zip"
+   ],
+   "modules_count": 1,
+   "selected_modules": []
+}

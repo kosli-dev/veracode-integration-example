@@ -79,6 +79,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Run veracode scan
+        # We have not set up veracode, we just use some saved result files
+        run: cp testfiles/veracode-scan-no-errors.json static-scan-backend.json
+
+      - name: Create veracode summary
+        run: ./scripts/create-veracode-summary-file.sh static-scan-backend.json static-scan-summary-backend.json
+
+      - name: Attest veracode executed
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: ./.github/actions/kosli-attest-veracode-executed
+        with:
+          veracode-summary-file: static-scan-summary-backend.json
+
+
   assert-artifacts:
     name: Assert artifacts
     if: ${{ github.ref == 'refs/heads/main' && always() }}
