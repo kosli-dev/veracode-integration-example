@@ -33,13 +33,6 @@ jobs:
           kosli-trail: ${{ env.KOSLI_TRAIL }}
           kosli-template-file: ${{ env.KOSLI_TEMPLATE_FILE }}
 
-  veracode-scan:
-    name: Veracode scan
-    needs: [begin-trail]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
 
   pull-request:
     name: Pull-request
@@ -57,7 +50,7 @@ jobs:
 
   build:
     name: Build backend
-    needs: [begin-trail, veracode-scan, pull-request]
+    needs: [begin-trail, pull-request]
     runs-on: ubuntu-latest
     outputs:
       fingerprint: ${{ steps.calculate_fingerprint.outputs.fingerprint }}
@@ -78,6 +71,13 @@ jobs:
           kosli-artifact-template-name: backend
           artifact-name: backend:${{ env.SHORT_SHA }}
           artifact-dir: apps/backend
+
+  veracode-scan:
+    name: Veracode scan
+    needs: [begin-trail, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
   assert-artifacts:
     name: Assert artifacts
