@@ -1,0 +1,150 @@
+{
+   "_links": {
+      "root": {
+         "href": "/",
+         "name": "",
+         "templated": false
+      },
+      "self": {
+         "href": "/scans/3f9bef4a-7ca6-4938-a64e-019192360bbb/findings",
+         "name": "",
+         "templated": false
+      },
+      "help": {
+         "href": "https://docs.veracode.com/",
+         "name": "",
+         "templated": false
+      },
+      "create": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "start": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "details": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "upload": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "cancel": {
+         "href": "",
+         "name": "",
+         "templated": false
+      }
+   },
+   "scan_id": "3f9bef4a-7ca6-4938-a64e-019192360bbb",
+   "scan_status": "SUCCESS",
+   "message": "Scan successful. Results size: 476605 bytes",
+   "modules": [
+      "JS files within example.zip"
+   ],
+   "modules_count": 1,
+   "findings": [
+      {
+         "title": "console.error",
+         "issue_id": 1007,
+         "gob": "D",
+         "severity": 1,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1003,
+         "gob": "D",
+         "severity": 2,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1004,
+         "gob": "B",
+         "severity": 3,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1005,
+         "gob": "B",
+         "severity": 3,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1006,
+         "gob": "C",
+         "severity": 3,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1001,
+         "gob": "B",
+         "severity": 4,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1002,
+         "gob": "B",
+         "severity": 4,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      },
+      {
+         "title": "console.error",
+         "issue_id": 1002,
+         "gob": "A",
+         "severity": 5,
+         "issue_type_id": "taint",
+         "issue_type": "Improper Output Neutralization for Logs",
+         "cwe_id": "117",
+         "display_text": "some message",
+         "stack_dumps": {},
+         "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v4/java/117.html"
+      }
+   ],
+   "selected_modules": []
+}

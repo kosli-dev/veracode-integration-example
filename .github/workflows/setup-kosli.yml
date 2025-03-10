@@ -54,13 +54,12 @@ jobs:
 #            --template-file kosli-release-template.yml
 
       ### Custom attestation types ###
-#      - name: Create approval-veracode attestation type
-#        run:
-#          kosli create attestation-type approval-veracode
-#              --description "Approval from Jira. Must have at least 1 approver and all approvers must have APPROVED it"
-#              --schema approval-veracode-schema.json
-#              --jq '(.approvers | length) > 0'
-#              --jq '[.approvers[].status == "APPROVED"] | all'
+      - name: Create veracode-executed attestation type
+        run:
+          kosli create attestation-type veracode-executed
+              --description "Attest that veracode scan was executed"
+              --schema kosli-setup/veracode-scan-schema.json
+              --jq '.scan_status == "SUCCESS"'
 
 
       ### environments ###

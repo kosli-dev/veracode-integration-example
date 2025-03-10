@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["scan_status", "severity_summary", "gob_summary"],
+  "properties": {
+    "severity_summary": {
+      "type": "object",
+      "required": ["severity_1", "severity_2", "severity_3", "severity_4", "severity_5"],
+      "properties": {
+        "severity_1": { "type": "integer", "minimum": 0 },
+        "severity_2": { "type": "integer", "minimum": 0 },
+        "severity_3": { "type": "integer", "minimum": 0 },
+        "severity_4": { "type": "integer", "minimum": 0 },
+        "severity_5": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "gob_summary": {
+      "type": "object",
+      "required": ["gob_a", "gob_b", "gob_c", "gob_d"],
+      "properties": {
+        "gob_a": { "type": "integer", "minimum": 0 },
+        "gob_b": { "type": "integer", "minimum": 0 },
+        "gob_c": { "type": "integer", "minimum": 0 },
+        "gob_d": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "_links": {
+      "type": "object",
+      "properties": {
+        "root": { "$ref": "#/$defs/link" },
+        "self": { "$ref": "#/$defs/link" },
+        "help": { "$ref": "#/$defs/link" },
+        "create": { "$ref": "#/$defs/link" },
+        "start": { "$ref": "#/$defs/link" },
+        "details": { "$ref": "#/$defs/link" },
+        "upload": { "$ref": "#/$defs/link" },
+        "cancel": { "$ref": "#/$defs/link" }
+      },
+      "additionalProperties": false
+    },
+    "scan_id": { "type": "string", "format": "uuid" },
+    "scan_status": { "type": "string" },
+    "message": { "type": "string" },
+    "modules": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "modules_count": { "type": "integer", "minimum": 0 },
+    "selected_modules": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": ["href", "name", "templated"],
+      "properties": {
+        "href": { "type": "string" },
+        "name": { "type": "string" },
+        "templated": { "type": "boolean" }
+      }
+    }
+  },
+  "additionalProperties": false
+}
