@@ -1,9 +1,9 @@
 version: 1
 trail:
     attestations:
-#        - name: veracode-scan
-#          type: '*'
         - name: pull-request
           type: pull_request
+        - name: veracode-executed
+          type: custom:veracode-executed
     artifacts:
         - name: backend
