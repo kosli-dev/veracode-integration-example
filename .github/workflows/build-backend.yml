@@ -50,7 +50,7 @@ jobs:
 
   build:
     name: Build backend
-    needs: [begin-trail, pull-request]
+    needs: [begin-trail]
     runs-on: ubuntu-latest
     outputs:
       fingerprint: ${{ steps.calculate_fingerprint.outputs.fingerprint }}
