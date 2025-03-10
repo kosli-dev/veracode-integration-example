@@ -2,7 +2,7 @@ name: Build Backend
 
 on:
   push:
-    paths: ["apps/backend/**"]
+#    paths: ["apps/backend/**"]
     branches-ignore:
       - 'refs/tags/*' # In this demo we use tags to simulate what SW is running, so ignore
 
@@ -50,7 +50,7 @@ jobs:
 
   build:
     name: Build backend
-    needs: [begin-trail, pull-request]
+    needs: [begin-trail]
     runs-on: ubuntu-latest
     outputs:
       fingerprint: ${{ steps.calculate_fingerprint.outputs.fingerprint }}
@@ -90,6 +90,8 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: ./.github/actions/kosli-attest-veracode-executed
         with:
+          kosli-artifact-template-name: veracode-executed
+          artifact-fingerprint: ${{ needs.build.outputs.fingerprint }}
           veracode-summary-file: static-scan-summary-backend.json
 
 

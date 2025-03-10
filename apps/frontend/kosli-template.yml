@@ -3,7 +3,8 @@ trail:
     attestations:
         - name: pull-request
           type: pull_request
-        - name: veracode-executed
-          type: custom:veracode-executed
     artifacts:
         - name: frontend
+          attestations:
+            - name: veracode-executed
+              type: custom:veracode-executed
