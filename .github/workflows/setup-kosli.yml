@@ -8,9 +8,6 @@ env:
   KOSLI_ORG: "${{ vars.KOSLI_ORG }}"
   KOSLI_API_TOKEN: "${{ secrets.KOSLI_PUBLIC_API_TOKEN }}"
   KOSLI_CLI_VERSION: "${{ vars.KOSLI_CLI_VERSION }}"
-#  KOSLI_ENV_DEV: "${{ vars.KOSLI_ENV_DEV }}"
-#  KOSLI_ENV_STAGING:  "${{ vars.KOSLI_ENV_STAGING }}"
-#  KOSLI_ENV_PROD:  "${{ vars.KOSLI_ENV_PROD }}"
   # KOSLI_DRY_RUN: true
 
 jobs:
@@ -63,50 +60,3 @@ jobs:
               --jq '.scan_status == "SUCCESS"'
               --jq 'all(.severity_summary[]; . == 0)'
               --jq 'all(.gob_summary[]; . == 0)'
-
-#      - name: Archive veracode-executed attestation type
-#        run:
-#          kosli archive attestation-type veracode-executed
-
-      ### environments ###
-#      - name: Create dev env
-#        run:
-#          kosli create environment ${{ env.KOSLI_ENV_DEV }}
-#            --description "A simulated development environment"
-#            --type server
-#
-#      - name: Create staging env
-#        run:
-#          kosli create environment ${{ env.KOSLI_ENV_STAGING }}
-#            --description "A simulated staging environment"
-#            --type server
-#
-#      - name: Create prod env
-#        run:
-#          kosli create environment ${{ env.KOSLI_ENV_PROD }}
-#            --description "A simulated production environment"
-#            --type server
-
-      ### policies ###
-#      - name: Create dev and staging policy
-#        run:
-#          kosli create policy veracode-example-dev-staging-policy kosli-dev-staging-policy.yml
-#            --description "Trail compliance"
-#            --type env
-#
-#      - name: Attach policy for dev and staging env
-#        run:
-#          kosli attach-policy veracode-example-dev-staging-policy
-#            --environment  ${{ env.KOSLI_ENV_DEV }}
-#            --environment  ${{ env.KOSLI_ENV_STAGING }}
-#
-#      - name: Create policy for prod env
-#        run:
-#          kosli create policy veracode-example-prod-policy kosli-prod-policy.yml
-#            --description "Trail compliance and release-approval"
-#            --type env
-#
-#      - name: Attach policy for prod env
-#        run:
-#          kosli attach-policy veracode-example-prod-policy
-#            --environment  ${{ env.KOSLI_ENV_PROD }}
