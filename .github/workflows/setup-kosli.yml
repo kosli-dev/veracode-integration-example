@@ -29,12 +29,6 @@ jobs:
             ${{ vars.KOSLI_CLI_VERSION }}
 
       ### flows ###
-#      - name: Create veracode-example-source flow
-#        run:
-#          kosli create flow veracode-example-source
-#            --description "Track veracode example attestations for source"
-#            --template-file kosli-source-template.yml
-
       - name: Create veracode-example-backend flow
         run:
           kosli create flow veracode-example-backend
@@ -51,6 +45,7 @@ jobs:
         run:
           kosli create flow veracode-example-veracode
             --description "Flow to track if the veracode process is followed"
+            --template-file kosli-flow-templates/veracode-template.yml
 
       ### Custom attestation types ###
       - name: Create veracode-scan-executed attestation type

@@ -1,0 +1,5 @@
+version: 1
+trail:
+    attestations:
+        - name: security-scan-vulnerability-summary
+          type: custom:veracode-scan-vulnerability-summary
