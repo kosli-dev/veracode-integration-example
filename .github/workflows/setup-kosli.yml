@@ -39,27 +39,36 @@ jobs:
         run:
           kosli create flow veracode-example-backend
             --description "Track veracode example attestations for backend"
-            --template-file apps/backend/kosli-template.yml
+            --template-file kosli-flow-templates/backend-template.yml
 
       - name: Create veracode-example-frontend flow
         run:
           kosli create flow veracode-example-frontend
             --description "Track veracode example attestations for frontend"
-            --template-file apps/frontend/kosli-template.yml
+            --template-file kosli-flow-templates/frontend-template.yml
 
-#      - name: Create veracode-example-release flow
-#        run:
-#          kosli create flow veracode-example-release
-#            --description "Track veracode example attestations for releases"
+      - name: Create veracode-example-veracode flow
+        run:
+          kosli create flow veracode-example-veracode
+            --description "Flow to track if the veracode process is followed"
 #            --template-file kosli-release-template.yml
 
       ### Custom attestation types ###
       - name: Create veracode-executed attestation type
         run:
-          kosli create attestation-type veracode-executed
+          kosli create attestation-type veracode-scan-executed
               --description "Attest that veracode scan was executed"
-              --schema kosli-setup/veracode-scan-schema.json
+              --schema custom-attestation-types/veracode-scan-schema.json
               --jq '.scan_status == "SUCCESS"'
+
+      - name: Create veracode-vulnerability-summary attestation type
+        run:
+          kosli create attestation-type veracode-scan-vulnerability-summary
+              --description "Attest that veracode scan has no vulnerabilities"
+              --schema custom-attestation-types/veracode-scan-schema.json
+              --jq '.scan_status == "SUCCESS"'
+              --jq 'all(.severity_summary[]; . == 0)'
+              --jq 'all(.gob_summary[]; . == 0)'
 
 
       ### environments ###
