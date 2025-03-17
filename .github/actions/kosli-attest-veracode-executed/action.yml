@@ -36,7 +36,7 @@ runs:
       shell: bash
       run: |
         kosli attest custom \
-          --type=veracode-executed \
+          --type=veracode-scan-executed \
           --name ${{ inputs.kosli-attestation-template-name }} \
           --fingerprint ${{ inputs.artifact-fingerprint }} \
           --attestation-data ${{ inputs.veracode-summary-file }}
