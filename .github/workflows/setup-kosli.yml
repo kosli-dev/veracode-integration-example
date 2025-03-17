@@ -53,14 +53,14 @@ jobs:
             --description "Flow to track if the veracode process is followed"
 
       ### Custom attestation types ###
-      - name: Create veracode-executed attestation type
+      - name: Create veracode-scan-executed attestation type
         run:
           kosli create attestation-type veracode-scan-executed
               --description "Attest that veracode scan was executed"
               --schema custom-attestation-types/veracode-scan-schema.json
               --jq '.scan_status == "SUCCESS"'
 
-      - name: Create veracode-vulnerability-summary attestation type
+      - name: Create veracode-scan-vulnerability-summary attestation type
         run:
           kosli create attestation-type veracode-scan-vulnerability-summary
               --description "Attest that veracode scan has no vulnerabilities"

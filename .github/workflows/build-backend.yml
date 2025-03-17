@@ -94,6 +94,14 @@ jobs:
           artifact-fingerprint: ${{ needs.build.outputs.fingerprint }}
           veracode-summary-file: static-scan-summary-backend.json
 
+      - name: Attest veracode vulnerability summary
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: ./.github/actions/kosli-attest-veracode-vulnerability-summary
+        with:
+          kosli-flow: veracode-example-veracode
+          kosli-trail-base-name: backend
+          kosli-attestation-template-name: security-scan-vulnerability-summary
+          veracode-summary-file: static-scan-summary-backend.json
 
   assert-artifacts:
     name: Assert artifacts
