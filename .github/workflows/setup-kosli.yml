@@ -69,9 +69,9 @@ jobs:
               --jq 'all(.severity_summary[]; . == 0)'
               --jq 'all(.gob_summary[]; . == 0)'
 
-      - name: Archive veracode-executed attestation type
-        run:
-          kosli archive attestation-type veracode-executed
+#      - name: Archive veracode-executed attestation type
+#        run:
+#          kosli archive attestation-type veracode-executed
 
       ### environments ###
 #      - name: Create dev env
