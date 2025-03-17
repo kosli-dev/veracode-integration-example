@@ -13,8 +13,8 @@ inputs:
   #   KOSLI_TRAIL: your-trail-name (often git-commit-sha)
   #   KOSLI_API_TOKEN: "${{ secrets.KOSLI_API_TOKEN }}" 
   #   KOSLI_CLI_VERSION: 2.11.6
-  kosli-artifact-template-name:
-    description: "Name of the artifact in kosli template-file. Often something generic like 'frontend'"
+  kosli-attestation-template-name:
+    description: "Name of the attestation in kosli template-file. Often something generic like 'security-scan-executed'"
     required: true
   artifact-fingerprint:
     description: "Fingerprint of artifact"
@@ -37,6 +37,6 @@ runs:
       run: |
         kosli attest custom \
           --type=veracode-executed \
-          --name ${{ inputs.kosli-artifact-template-name }} \
+          --name ${{ inputs.kosli-attestation-template-name }} \
           --fingerprint ${{ inputs.artifact-fingerprint }} \
           --attestation-data ${{ inputs.veracode-summary-file }}
