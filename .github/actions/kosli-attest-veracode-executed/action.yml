@@ -55,7 +55,7 @@ runs:
             --name ${{ inputs.kosli-attestation-template-name }} \
             --fingerprint ${{ inputs.artifact-fingerprint }} \
             --attestation-data summary-${{ inputs.veracode-scan-results-file }}
-        else; then
+        else
            kosli attest custom \
             --type=veracode-scan-executed \
             --name ${{ inputs.kosli-artifact-template-name }}.${{ inputs.kosli-attestation-template-name }} \
