@@ -3,7 +3,6 @@ name: Kosli Attest Veracode scan executed
 # Attest veracode executed
 #   https://docs.kosli.com/client_reference/kosli_attest_custom/
 
-
 inputs:
   # The Following environment variables must be set in your GitHub action
   # before using this composite
@@ -17,8 +16,11 @@ inputs:
     description: "Name of the attestation in kosli template-file. Often something generic like 'security-scan-executed'"
     required: true
   artifact-fingerprint:
-    description: "Fingerprint of artifact"
-    required: true
+    description: "Fingerprint of artifact (must specify this or the kosli-artifact-template-name)"
+    required: false
+  kosli-artifact-template-name:
+    description: "Name of the artifact in kosli template-file. Often something generic like 'frontend'"
+    required: false
   veracode-scan-results-file:
     description: "Veracode scan results file. Output from 'veracode static scan --results-file=xxx.json"
     required: true
@@ -26,6 +28,14 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Validate inputs
+      shell: bash
+      run: |
+        if [[ -z "${{ inputs.artifact-fingerprint }}" && -z "${{ inputs.kosli-artifact-template-name }}" ]]; then
+          echo "Error: You must specify either artifact-fingerprint or kosli-artifact-template-name."
+          exit 1
+        fi
+
     - name: Setup Kosli cli
       uses: kosli-dev/setup-cli-action@v2
       with:
@@ -39,8 +49,15 @@ runs:
     - name: Attest Veracode scan executed
       shell: bash
       run: |
-        kosli attest custom \
-          --type=veracode-scan-executed \
-          --name ${{ inputs.kosli-attestation-template-name }} \
-          --fingerprint ${{ inputs.artifact-fingerprint }} \
-          --attestation-data summary-${{ inputs.veracode-scan-results-file }}
+        if [ -n "${{ inputs.artifact-fingerprint }}" ]; then
+          kosli attest custom \
+            --type=veracode-scan-executed \
+            --name ${{ inputs.kosli-attestation-template-name }} \
+            --fingerprint ${{ inputs.artifact-fingerprint }} \
+            --attestation-data summary-${{ inputs.veracode-scan-results-file }}
+        else; then
+           kosli attest custom \
+            --type=veracode-scan-executed \
+            --name ${{ inputs.kosli-artifact-template-name }}.${{ inputs.kosli-attestation-template-name }} \
+            --attestation-data summary-${{ inputs.veracode-scan-results-file }}
+        fi
