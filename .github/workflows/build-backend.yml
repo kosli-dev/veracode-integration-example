@@ -81,7 +81,7 @@ jobs:
 
       - name: Run veracode scan
         # We have not set up veracode, we just use some saved result files
-        run: cp testfiles/veracode-scan-no-errors.json static-scan-backend.json
+        run: cp testfiles/veracode-scan-no-errors.json testfiles/static-scan-backend.json
 
       - name: Attest veracode executed
         if: ${{ github.ref == 'refs/heads/main' }}
@@ -89,7 +89,7 @@ jobs:
         with:
           kosli-attestation-template-name: security-scan-executed
           kosli-artifact-template-name: backend
-          veracode-scan-results-file: static-scan-backend.json
+          veracode-scan-results-file: testfiles/static-scan-backend.json
 
       - name: Attest veracode vulnerability summary
         if: ${{ github.ref == 'refs/heads/main' }}
@@ -98,7 +98,7 @@ jobs:
           kosli-flow: veracode-example-veracode
           kosli-trail-base-name: backend
           kosli-attestation-template-name: security-scan-vulnerability-summary
-          veracode-scan-results-file: static-scan-backend.json
+          veracode-scan-results-file: testfiles/static-scan-backend.json
 
   assert-artifacts:
     name: Assert artifacts
